@@ -1,0 +1,30 @@
+{
+  "name": "menu-example",
+  "version": "1.0.0",
+  "description": "Code example of dynamic menu with ReactJS",
+  "main": "index.html",
+  "scripts": {
+    "postinstall": "node_modules/.bin/bower install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:DesTincT/code.git"
+  },
+  "author": "DesTincT",
+  "license": "Public",
+  "devDependencies": {
+    "amdclean": "^2.7.0",
+    "bower": "*",
+    "grunt": "~0.4.5",
+    "grunt-npm-install": "*",
+    "grunt-contrib-clean": "*",
+    "grunt-contrib-compress": "*",
+    "grunt-contrib-concat": "*",
+    "grunt-contrib-less": "*",
+    "grunt-contrib-requirejs": "*",
+    "grunt-react": "*",
+    "grunt-text-replace": "*",
+    "grunt-contrib-watch": "*",
+    "less": "*"
+  }
+}

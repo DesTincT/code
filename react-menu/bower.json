@@ -1,0 +1,28 @@
+{
+  "name": "menu-example",
+  "version": "1.0.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap" : "~3.3.4",
+    "less"      : "2.2.0",
+    "Sortable"  : "1.1.0",
+    "react"     : "0.12.2",
+    "jquery"    : "1.11.1"
+  },
+  "authors": [
+    "DesTincT"
+  ],
+  "main": "bower.json",
+  "moduleType": [
+    "node"
+  ],
+  "license": "Free",
+  "private": true
+}
