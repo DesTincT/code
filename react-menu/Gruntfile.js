@@ -93,7 +93,7 @@ module.exports = function(grunt) {
 
       react: {
         files: 'src/**/*.jsx',
-        tasks: ['react', 'requirejs', 'concat']
+        tasks: ['react', 'requirejs', 'concat', 'uglify']
       }
     }
   });

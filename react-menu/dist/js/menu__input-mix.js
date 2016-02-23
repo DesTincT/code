@@ -47,7 +47,7 @@ var FSMenuInputMixin = {
         if ( typeof(found) !== 'undefined' ) {
             return found;
         } else {
-            console.error('Ключ ' + keyChain.join(':') +' не найден');
+            console.error('Key ' + keyChain.join(':') +' not found');
             return '';
         }
 
@@ -56,10 +56,10 @@ var FSMenuInputMixin = {
     /**
      * Changes value in obj
      * @method changeValue
-     * @param  {[type]}    obj   json object
-     * @param  {[type]}    key   given info:price:etc string
-     * @param  {[type]}    value value to change on
-     * @return {[type]}          changed obj or ''
+     * @param  {object}    obj   json object
+     * @param  {string}    key   given info:price:etc string
+     * @param  {string}    value value to change on
+     * @return {object}    obj   changed obj or ''
      */
     changeValue: function( obj, key, value ){
 
@@ -87,7 +87,7 @@ var FSMenuInputMixin = {
 
             return obj;
         } else {
-            console.error('Ключ ' + keyChain.join(':') +' не найден');
+            console.error('Key ' + keyChain.join(':') +' not found');
             return '';
         }
 

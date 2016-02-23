@@ -30,71 +30,76 @@ var FSMenuFixtures = {
   }
 };
 /**
- * [FSMenuUpdate вспомогательные функции обновления массива меню]
+ * Helper function for menu update
  * @type {Object}
  */
 var FSMenuUpdate = {
+  /**
+   * Sometimes need to clone object instead of getting link to object
+   * @method cloneObject
+   * @param  {object}    obj [description]
+   * @return {object}        [description]
+   */
   cloneObject: function (obj) {
     return JSON.parse(JSON.stringify(obj));
   },
   /**
-   * [sortMenu сортирует меню, выставляет id по порядку]
-   * @param  {[type]} menu [ массив ]
-   * @return {[type]} menu [ измененный массив ]
+   * Resets id's of items
+   * @param  {object} menu Menu structure
+   * @return {object} menu sorted menu
    */
   sortMenu: function (menu) {
     var i = 0;
-    for (item in menu) {
+    for (var item in menu) {
       menu[item].id = i++;
     }
     return menu;
   },
   /**
-   * [findMenu находит меню со всеми его разделами и блюдами]
-   * @param  {[type]} menu    [ массив всего меню, this.state ]
-   * @param  {[type]} menu_id [ искомый id меню ]
-   * @return {[type]}         [ ]
+   * Finds and returns part menu with its sections and dishes
+   * @method findMenu
+   * @param  {array}      menu        Menu structure
+   * @param  {integer}    menu_id     id of the menu to part
+   * @return {array}      partMenu    menu array with its sections and dishes
    */
   findMenu: function (menu, menu_id) {
-    var partMenu = [];
-    var found = 0;
+    var partMenu = [], found = 0;
     for (var item in menu) {
       if (menu[item].type == 'menu' && found) {
         break;
       }
       if (menu[item].id == menu_id && !found) {
-        partMenu.push(this.cloneObject(menu[item]));
+        partMenu.push(menu[item]);
         found = 1;
       }
       if (found && menu[item].type !== 'menu') {
-        partMenu.push(this.cloneObject(menu[item]));
+        partMenu.push(menu[item]);
       }
     }
     return partMenu;
   },
   /**
-   * [addMenu Добавление меню (тайтл нового меню)]
-   * @param {[type]} menu [ массив меню ]
-   * @return {[type]}     [ измененный массив ]
+   * Adds new menu (menu title)
+   * @method addMenu
+   * @param  {array} menu Menu structure
    */
   addMenu: function (menu) {
-    var updated = false;
     var fixture = this.cloneObject(FSMenuFixtures.menu['menu']);
     menu.splice(0, 0, fixture);
-    updated = true;
-    return updated ? menu : console.error('Неизвестная ошибка: addMenu');
+    return menu;
   },
   /**
-   * [addMenuItem Добавляет объект в массив]
-   * @param {[type]} menu [ массив ]
-   * @param {[type]} item [ объект, индекс по id ]
-   * @param {[type]} type [ какой тип объекта добавить menu|category|dish ]
-   * @param {[type]} mode [ режим | copy - копирует item ]
-   * @return {[type]}     [ измененный массив ]
+   * Adds new item to {menu} after {item}
+   * @method addMenuItem
+   * @param  {array}     menu     Menu structure
+   * @param  {object}    item     Add new item after this {item}
+   * @param  {string}    type     Type: category | dish
+   * @param  {string}    mode     Mode: 'copy' - dublicates {item}
+   * @return {array}     menu     modified array structure
    */
   addMenuItem: function (menu, item, type, mode) {
     var updated = false;
-    for (menuIndex in menu) {
+    for (var menuIndex in menu) {
       if (item.id == menu[menuIndex].id) {
         var fixture = this.cloneObject(mode == 'copy' ? item : FSMenuFixtures.menu[type]);
         menu.splice(++menuIndex, 0, fixture);
@@ -102,24 +107,25 @@ var FSMenuUpdate = {
         break;
       }
     }
-    return updated ? menu : console.error('Не найден элемент меню: ' + item);
+    return updated ? menu : console.error('Not found: ' + item);
   },
   /**
-   * [removeMenuItem Удаляет объект из массива]
-   * @param  {[type]} menu [ массив ]
-   * @param  {[type]} item [ объект, индекс по id ]
-   * @return {[type]}      [ измененный массив ]
+   * Removes {item} from {menu}
+   * @method removeMenuItem
+   * @param  {array}  menu
+   * @param  {object} item
+   * @return {array}     menu     modified array structure
    */
   removeMenuItem: function (menu, item) {
     var updated = false;
-    for (menuIndex in menu) {
+    for (var menuIndex in menu) {
       if (item.id == menu[menuIndex].id) {
         menu.splice(menuIndex, 1);
         updated = true;
         break;
       }
     }
-    return updated ? menu : console.error('Не найден элемент меню: ' + item);
+    return updated ? menu : console.error('Not found: ' + item);
   }
 };
 /**
@@ -159,17 +165,17 @@ var FSMenuInputMixin = {
     if (typeof found !== 'undefined') {
       return found;
     } else {
-      console.error('Ключ ' + keyChain.join(':') + ' не найден');
+      console.error('Key ' + keyChain.join(':') + ' not found');
       return '';
     }
   },
   /**
    * Changes value in obj
    * @method changeValue
-   * @param  {[type]}    obj   json object
-   * @param  {[type]}    key   given info:price:etc string
-   * @param  {[type]}    value value to change on
-   * @return {[type]}          changed obj or ''
+   * @param  {object}    obj   json object
+   * @param  {string}    key   given info:price:etc string
+   * @param  {string}    value value to change on
+   * @return {object}    obj   changed obj or ''
    */
   changeValue: function (obj, key, value) {
     var keyChain = key.split(':'), found = '', menu_key = '';
@@ -189,7 +195,7 @@ var FSMenuInputMixin = {
       }
       return obj;
     } else {
-      console.error('Ключ ' + keyChain.join(':') + ' не найден');
+      console.error('Key ' + keyChain.join(':') + ' not found');
       return '';
     }
   }
