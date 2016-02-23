@@ -102,36 +102,32 @@ var FSMenuItem = React.createClass({
     render: function(){
         var that = this,
             item = this.props.item,
-            menu = that.props.menu;
-
-        var fsmClass = "row fsm-menu__item fsm-menu__item_" + item.type;
-
-        var menuItem = false;
+            menu = this.props.menu,
+            fsmClass = "row fsm-menu__item fsm-menu__item_" + item.type,
+            menuItem = false;
 
         // разные шаблоны в зависимости от типа объекта
         switch ( item.type ) {
             case 'menu': {
-                if ( item.id !== 0 ) {
-                    fsmClass += ' fsm-menu__item_draggable';
-                }
-
                 menuItem = <FSMenuItemTitle {...that.props} />
             } break;
             case 'category': {
-                fsmClass += ' fsm-menu__item_draggable';
                 menuItem = <FSMenuItemCategory {...that.props} />
             } break;
             case 'dish': {
-                fsmClass += ' fsm-menu__item_draggable';
                 menuItem = <FSMenuItemDish {...that.props} />
             } break;
 
         }
 
+        if ( item.type !== 'menu' || (item.id !== 0) ) {
+            fsmClass += ' fsm-menu__item_draggable';
+        }
+
         return (
-                <div key={item.id} className={fsmClass}>
-                    {menuItem}
-                </div>
+            <div key={item.id} className={fsmClass}>
+                {menuItem}
+            </div>
         )
     }
 });

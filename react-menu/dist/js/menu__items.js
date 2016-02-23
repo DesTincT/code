@@ -102,36 +102,32 @@ var FSMenuItem = React.createClass({displayName: "FSMenuItem",
     render: function(){
         var that = this,
             item = this.props.item,
-            menu = that.props.menu;
-
-        var fsmClass = "row fsm-menu__item fsm-menu__item_" + item.type;
-
-        var menuItem = false;
+            menu = this.props.menu,
+            fsmClass = "row fsm-menu__item fsm-menu__item_" + item.type,
+            menuItem = false;
 
         // разные шаблоны в зависимости от типа объекта
         switch ( item.type ) {
             case 'menu': {
-                if ( item.id !== 0 ) {
-                    fsmClass += ' fsm-menu__item_draggable';
-                }
-
                 menuItem = React.createElement(FSMenuItemTitle, React.__spread({},  that.props))
             } break;
             case 'category': {
-                fsmClass += ' fsm-menu__item_draggable';
                 menuItem = React.createElement(FSMenuItemCategory, React.__spread({},  that.props))
             } break;
             case 'dish': {
-                fsmClass += ' fsm-menu__item_draggable';
                 menuItem = React.createElement(FSMenuItemDish, React.__spread({},  that.props))
             } break;
 
         }
 
+        if ( item.type !== 'menu' || (item.id !== 0) ) {
+            fsmClass += ' fsm-menu__item_draggable';
+        }
+
         return (
-                React.createElement("div", {key: item.id, className: fsmClass}, 
-                    menuItem
-                )
+            React.createElement("div", {key: item.id, className: fsmClass}, 
+                menuItem
+            )
         )
     }
 });
