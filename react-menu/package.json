@@ -25,6 +25,7 @@
     "grunt-react": "*",
     "grunt-text-replace": "*",
     "grunt-contrib-watch": "*",
+    "grunt-contrib-uglify":"*",
     "less": "*"
   }
 }

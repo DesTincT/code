@@ -55,6 +55,14 @@ module.exports = function(grunt) {
       },
     },
 
+    uglify: {
+      menu: {
+        files: {
+          'main.min.js': ['main.js']
+        }
+      }
+    },
+
     less: {
       all: {
         files: {
@@ -97,6 +105,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-requirejs');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-text-replace');
   grunt.loadNpmTasks('grunt-react');
 
@@ -107,7 +116,7 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('all', [
-    'react', 'requirejs', 'concat', 'less', 'replace'
+    'react', 'requirejs', 'concat', 'uglify', 'less', 'replace'
   ]);
 
 };
