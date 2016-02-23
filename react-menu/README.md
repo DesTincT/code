@@ -2,7 +2,7 @@
 
 Example demonstrates restaurant/cafe menu control interface, written with ReactJS.
 
-See `src/jsx` for review.
+See [src/jsx](https://github.com/DesTincT/code/tree/master/react-menu/src/jsx) for review.
 
 `npm i --save && grunt` for compilate or just open index.html in browser for look.
 
