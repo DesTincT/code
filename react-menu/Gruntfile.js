@@ -45,20 +45,22 @@ module.exports = function(grunt) {
     concat: {
       menu: {
         src: [
+          'bower_components/jquery/dist/jquery.min.js',
+          'bower_components/bootstrap/dist/js/bootstrap.min.js',
           'bower_components/react/react.js',
           'bower_components/react/react-with-addons.js',
           'bower_components/Sortable/Sortable.min.js',
           'bower_components/Sortable/react-sortable-mixin.js',
           'dist/js/menu.js'
         ],
-        dest: 'main.js'
+        dest: 'dist/main.js'
       },
     },
 
     uglify: {
       menu: {
         files: {
-          'main.min.js': ['main.js']
+          'main.min.js': ['dist/main.js']
         }
       }
     },
